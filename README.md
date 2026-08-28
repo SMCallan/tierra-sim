@@ -24,7 +24,7 @@ npm run build --prefix Simulator
 npm run app --prefix Simulator
 ```
 
-That opens the visual cockpit in your browser. Press play and watch the world fill up.
+That opens the cockpit in your browser. Click **Run** and watch the world fill up.
 
 If something goes wrong, see **[Troubleshooting](#troubleshooting)** at the bottom.
 
@@ -106,15 +106,27 @@ result out of missing data.
 
 Once the cockpit is open:
 
+**The one worth doing first.** Under the world grid there's a row of view tabs — `Genome`,
+`Lineage`, `Function`, `Energy` and others. Switch between **Lineage** and **Function**.
+
+Lineage colours every organism by the family it descends from. Function colours it by what it
+actually does. Early on the two pictures match. Before long they don't, and you are looking
+straight at the thing this project measures.
+
 | Try this | What to watch for |
 |---|---|
-| Press play and leave it | The grid fills, then settles into churn |
-| Watch the divergence chart | It climbs fast, then flattens — usually within the first 1,000 steps |
-| Watch the population chart | Hosts and parasites rise and fall against each other |
-| Turn mutation up | Divergence arrives sooner |
-| Turn transfer up | Divergence barely moves — but parasites die out much faster |
+| Click **Run** and leave it | The grid fills, then settles into churn |
+| Watch **Mean divergence** in the top row of numbers | It climbs fast, then flattens — usually inside the first 1,000 ticks |
+| Open **Ecological trajectories** at the bottom | Three charts: population by lineage, births and HGT, divergence and coverage |
+| Click any living cell | The inspector on the right shows that organism's genome, ancestry and realised behaviour |
+| Tick **auto-pause on first HGT success** | Stops the moment a genome fragment first moves sideways between neighbours |
+| Raise mutation, then reset and run again | Divergence arrives sooner |
+| Raise transfer instead | Divergence barely moves — but parasites die out much faster |
 
 That last row surprised me, and it ended up being one of the more interesting findings.
+
+**The charts are collapsed by default.** *Ecological trajectories* at the bottom of the page is a
+drawer — click the heading to open it.
 
 ---
 
@@ -229,7 +241,11 @@ Dependencies aren't installed. Run `npm install --prefix Simulator`, and
 That's intentional. Pass a new `--output` path.
 
 **The cockpit opens but nothing moves**
-Press play. It starts paused.
+Click **Run**. It starts paused.
+
+**I can't find the charts**
+They're inside the *Ecological trajectories* drawer at the bottom of the page, collapsed by
+default. Click the heading to open it.
 
 ---
 
