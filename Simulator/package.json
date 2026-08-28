@@ -1,0 +1,33 @@
+{
+  "name": "@tierra-sim/workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "engine",
+    "runner",
+    "app"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @tierra-sim/engine && npm run build --workspace @tierra-sim/runner && npm run build --workspace @tierra-sim/app",
+    "test": "npm run test --workspace @tierra-sim/engine && npm run test --workspace @tierra-sim/runner && npm run test --workspace @tierra-sim/app",
+    "test:watch": "npm run test:watch --workspace @tierra-sim/engine",
+    "typecheck": "npm run build --workspace @tierra-sim/engine && npm run typecheck --workspace @tierra-sim/engine && npm run typecheck --workspace @tierra-sim/runner && npm run typecheck --workspace @tierra-sim/app",
+    "validate": "npm run typecheck && npm run test && npm run build",
+    "demo": "npm run build && node runner/dist/cli.js demo",
+    "benchmark": "npm run build && node runner/dist/cli.js benchmark",
+    "calibrate": "npm run build && node runner/dist/cli.js calibrate",
+    "calibrate:v8": "npm run calibrate -- --sweep runner/presets/calibration-sweep-v8.json",
+    "run:headless": "npm run build && node runner/dist/cli.js run",
+    "fixture:digest": "npm run build && node runner/dist/cli.js fixture-digest",
+    "app": "npm run build --workspace @tierra-sim/engine && npm run dev --workspace @tierra-sim/app"
+  },
+  "devDependencies": {
+    "@types/node": "25.9.5",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.2.0",
+  "fixture_id": "calibration-established-host-focal-inoculum-v6",
+  "ancestors": [
+    {
+      "lineage": "host",
+      "genome": [11, 1, 2, 4, 3, 11, 15, 11],
+      "count": 2048,
+      "initial_energy": 120
+    },
+    {
+      "lineage": "parasite",
+      "genome": [14, 14, 1, 2, 5, 3, 14, 14, 15],
+      "count": 128,
+      "initial_energy": 120
+    }
+  ],
+  "focal_region": {
+    "focal_ancestor_index": 1,
+    "origin": {"x": 24, "y": 24},
+    "width": 16,
+    "height": 16
+  }
+}

@@ -1,0 +1,1808 @@
+{
+  "schema_version": "0.1.0",
+  "batch_id": "formal-mpr-factorial-v1",
+  "base_configuration_path": "runner/presets/calibration-sweep-base-config-v9.json",
+  "fixture_path": "runner/presets/calibration-sweep-fixture-v6.json",
+  "runs": [
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.25__seed-610260801",
+      "condition_id": "factorial__mut-0.01__hgt-0.25",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.25__seed-610260802",
+      "condition_id": "factorial__mut-0.01__hgt-0.25",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.25__seed-610260803",
+      "condition_id": "factorial__mut-0.01__hgt-0.25",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.25__seed-610260804",
+      "condition_id": "factorial__mut-0.01__hgt-0.25",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.5__seed-610260801",
+      "condition_id": "factorial__mut-0.01__hgt-0.5",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.5__seed-610260802",
+      "condition_id": "factorial__mut-0.01__hgt-0.5",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.5__seed-610260803",
+      "condition_id": "factorial__mut-0.01__hgt-0.5",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.5__seed-610260804",
+      "condition_id": "factorial__mut-0.01__hgt-0.5",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.75__seed-610260801",
+      "condition_id": "factorial__mut-0.01__hgt-0.75",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.75__seed-610260802",
+      "condition_id": "factorial__mut-0.01__hgt-0.75",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.75__seed-610260803",
+      "condition_id": "factorial__mut-0.01__hgt-0.75",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.01__hgt-0.75__seed-610260804",
+      "condition_id": "factorial__mut-0.01__hgt-0.75",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 100
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.25__seed-610260801",
+      "condition_id": "factorial__mut-0.02__hgt-0.25",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.25__seed-610260802",
+      "condition_id": "factorial__mut-0.02__hgt-0.25",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.25__seed-610260803",
+      "condition_id": "factorial__mut-0.02__hgt-0.25",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.25__seed-610260804",
+      "condition_id": "factorial__mut-0.02__hgt-0.25",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.5__seed-610260801",
+      "condition_id": "factorial__mut-0.02__hgt-0.5",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.5__seed-610260802",
+      "condition_id": "factorial__mut-0.02__hgt-0.5",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.5__seed-610260803",
+      "condition_id": "factorial__mut-0.02__hgt-0.5",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.5__seed-610260804",
+      "condition_id": "factorial__mut-0.02__hgt-0.5",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.75__seed-610260801",
+      "condition_id": "factorial__mut-0.02__hgt-0.75",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.75__seed-610260802",
+      "condition_id": "factorial__mut-0.02__hgt-0.75",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.75__seed-610260803",
+      "condition_id": "factorial__mut-0.02__hgt-0.75",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.02__hgt-0.75__seed-610260804",
+      "condition_id": "factorial__mut-0.02__hgt-0.75",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.25__seed-610260801",
+      "condition_id": "factorial__mut-0.04__hgt-0.25",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.25__seed-610260802",
+      "condition_id": "factorial__mut-0.04__hgt-0.25",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.25__seed-610260803",
+      "condition_id": "factorial__mut-0.04__hgt-0.25",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.25__seed-610260804",
+      "condition_id": "factorial__mut-0.04__hgt-0.25",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.5__seed-610260801",
+      "condition_id": "factorial__mut-0.04__hgt-0.5",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.5__seed-610260802",
+      "condition_id": "factorial__mut-0.04__hgt-0.5",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.5__seed-610260803",
+      "condition_id": "factorial__mut-0.04__hgt-0.5",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.5__seed-610260804",
+      "condition_id": "factorial__mut-0.04__hgt-0.5",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.75__seed-610260801",
+      "condition_id": "factorial__mut-0.04__hgt-0.75",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.75__seed-610260802",
+      "condition_id": "factorial__mut-0.04__hgt-0.75",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.75__seed-610260803",
+      "condition_id": "factorial__mut-0.04__hgt-0.75",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "factorial__mut-0.04__hgt-0.75__seed-610260804",
+      "condition_id": "factorial__mut-0.04__hgt-0.75",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 25
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 3,
+            "denominator": 4
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260801",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 0,
+      "seed": 620260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260802",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 1,
+      "seed": 620260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260803",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 2,
+      "seed": 620260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260804",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 3,
+      "seed": 620260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260805",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 4,
+      "seed": 620260805,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260806",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 5,
+      "seed": 620260806,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260807",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 6,
+      "seed": 620260807,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260808",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 7,
+      "seed": 620260808,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260809",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 8,
+      "seed": 620260809,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260810",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 9,
+      "seed": 620260810,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260811",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 10,
+      "seed": 620260811,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "default-series__mut-0.02__hgt-0.5__seed-620260812",
+      "condition_id": "default-series__mut-0.02__hgt-0.5",
+      "replicate_id": 11,
+      "seed": 620260812,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-no-evolution__seed-610260801",
+      "condition_id": "control-no-evolution",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-no-evolution__seed-610260802",
+      "condition_id": "control-no-evolution",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-no-evolution__seed-610260803",
+      "condition_id": "control-no-evolution",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-no-evolution__seed-610260804",
+      "condition_id": "control-no-evolution",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-mutation-only__seed-610260801",
+      "condition_id": "control-mutation-only",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-mutation-only__seed-610260802",
+      "condition_id": "control-mutation-only",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-mutation-only__seed-610260803",
+      "condition_id": "control-mutation-only",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-mutation-only__seed-610260804",
+      "condition_id": "control-mutation-only",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 1,
+            "denominator": 50
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-hgt-only__seed-610260801",
+      "condition_id": "control-hgt-only",
+      "replicate_id": 0,
+      "seed": 610260801,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-hgt-only__seed-610260802",
+      "condition_id": "control-hgt-only",
+      "replicate_id": 1,
+      "seed": 610260802,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-hgt-only__seed-610260803",
+      "condition_id": "control-hgt-only",
+      "replicate_id": 2,
+      "seed": 610260803,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    },
+    {
+      "run_id": "control-hgt-only__seed-610260804",
+      "condition_id": "control-hgt-only",
+      "replicate_id": 3,
+      "seed": 610260804,
+      "overrides": {
+        "duration": {
+          "completed_ticks": 500000
+        },
+        "resources": {
+          "regeneration_per_tick": 1,
+          "harvest_per_activation": 3
+        },
+        "reproduction": {
+          "mutation_probability": {
+            "numerator": 0,
+            "denominator": 1
+          }
+        },
+        "hgt": {
+          "success_probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        "identity": {
+          "purpose": "formal"
+        }
+      }
+    }
+  ]
+}

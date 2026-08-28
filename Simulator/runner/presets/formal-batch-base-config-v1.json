@@ -1,0 +1,81 @@
+{
+  "identity": {
+    "schema_version": "0.4.0",
+    "engine_specification": "0.2",
+    "configuration_name": "formal-batch-base-v1",
+    "purpose": "calibration",
+    "run_id": "formal-batch-base-v1",
+    "condition_id": "formal-batch-base-v1",
+    "replicate_id": 0,
+    "seed": 202608031
+  },
+  "duration": {
+    "completed_ticks": 10000,
+    "sample_every_ticks": 200,
+    "checkpoint_every_ticks": null,
+    "state_hash_every_ticks": 200
+  },
+  "world": {
+    "width": 64,
+    "height": 64,
+    "topology": "toroidal_von_neumann",
+    "cell_capacity": 1,
+    "activation_order": "seeded_random_sequential",
+    "exogenous_death_probability": {"numerator": 1, "denominator": 1000}
+  },
+  "energy": {
+    "fixed_point_scale": 1,
+    "environmental_income": 0,
+    "maximum_organism_energy": 240,
+    "base_instruction_cost": 1,
+    "genome_maintenance": {"rule": "linear_floor", "numerator": 1, "denominator": 8, "min_cost": 1},
+    "autonomous_reproduction_cost": 45,
+    "offspring_endowment": 30,
+    "exec_nbr_attempt_cost": 1,
+    "exploit_levy": 10,
+    "splice_attempt_cost": 1,
+    "splice_success_cost": 5,
+    "computation_rewards": {"and": 4, "xor": 4, "equ": 4, "add": 4}
+  },
+  "reproduction": {
+    "cooldown_ticks": 10,
+    "min_genome_length": 2,
+    "max_genome_length": 24,
+    "mutation_probability": {"numerator": 1, "denominator": 50},
+    "mutation_weights": {"point": 6, "insertion": 2, "deletion": 2}
+  },
+  "exploitation": {
+    "donor_copy_rule": "cyclic_copy_search"
+  },
+  "resources": {
+    "mode": "local_renewable",
+    "cell_capacity": 120,
+    "initial_stock": 60,
+    "regeneration_per_tick": 2,
+    "harvest_per_activation": 4,
+    "harvest_neighbourhood_radius": 1,
+    "regeneration_timing": "before_scheduler_snapshot",
+    "harvest_timing": "after_exogenous_before_instruction"
+  },
+  "hgt": {
+    "success_probability": {"numerator": 1, "denominator": 2},
+    "min_chunk_length": 1,
+    "max_chunk_length": 3
+  },
+  "measurement": {
+    "bucket_count": 50,
+    "bucket_length_ticks": 200,
+    "informative_action_threshold": 1,
+    "sensitivity_thresholds": [5, 10],
+    "functional_class_boundaries": {
+      "autonomous_max": {"numerator": 1, "denominator": 10},
+      "exploitative_min": {"numerator": 9, "denominator": 10}
+    },
+    "detailed_event_logging": false
+  },
+  "initial_population": {
+    "fixture_path": "runner/presets/calibration-sweep-fixture-v6.json",
+    "fixture_sha256": "980f295da9a4e1e4f2f65392620db50fea6a4bc669224945465f3311c48eaf8e",
+    "placement_algorithm": "seeded_focal_region"
+  }
+}

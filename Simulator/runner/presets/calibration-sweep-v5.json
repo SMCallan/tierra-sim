@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "sweep_id": "calibration-64x64-cardinal-donor-refinement-v5",
+  "stage": "coarse_screen",
+  "base_configuration_path": "runner/presets/calibration-sweep-base-config-v4.json",
+  "fixture_path": "runner/presets/calibration-sweep-fixture-v4.json",
+  "replicate_seeds": [20260718],
+  "report_every_ticks": 200,
+  "late_window_fraction": {"numerator": 1, "denominator": 4},
+  "factors": {
+    "environmental_income": [3],
+    "exogenous_death_probability": [
+      {"label": "turnover-1-in-75", "numerator": 1, "denominator": 75},
+      {"label": "turnover-1-in-60", "numerator": 1, "denominator": 60},
+      {"label": "turnover-1-in-50", "numerator": 1, "denominator": 50}
+    ]
+  },
+  "screening_acceptance": {
+    "late_mean_occupancy_min": 0.20,
+    "late_mean_occupancy_max": 0.80,
+    "late_maximum_occupancy": 0.90,
+    "minimum_final_lineage_proportion": 0.05,
+    "minimum_late_autonomous_successes": 1,
+    "minimum_late_exploitative_successes": 1,
+    "minimum_late_hgt_donor_opportunities": 1,
+    "minimum_late_hgt_successes": 1,
+    "minimum_late_eligibility_proportion": 0.25,
+    "computation_created_energy_share_min": 0.005,
+    "computation_created_energy_share_max": 0.25,
+    "maximum_sampled_genome_bound_proportion": 0.25,
+    "maximum_projected_single_run_minutes": 120,
+    "maximum_peak_rss_bytes": 4294967296
+  },
+  "confirmation_requirements": {
+    "minimum_ticks": 10000,
+    "minimum_independent_seeds": 3,
+    "minimum_late_eligibility_proportion": 0.25,
+    "requires_full_5000_tick_behaviour_window": true
+  },
+  "ranking_order": [
+    "mandatory_gate_failures_ascending",
+    "ecological_gate_passes_descending",
+    "distance_from_0.50_late_occupancy_ascending",
+    "minimum_final_lineage_proportion_descending",
+    "late_eligibility_proportion_descending",
+    "projected_single_run_minutes_ascending"
+  ],
+  "prohibited_selection_inputs": [
+    "mean_divergence",
+    "maximum_divergence",
+    "divergence_onset",
+    "visual_preference"
+  ]
+}

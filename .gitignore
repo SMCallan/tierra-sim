@@ -1,0 +1,25 @@
+# Operating-system metadata
+.DS_Store
+**/.DS_Store
+
+# JavaScript dependencies and generated builds
+**/node_modules/
+**/dist/
+**/dist-ssr/
+
+# Logs and local environment files
+*.log
+*.local
+.env
+.env.*
+!.env.example
+
+# Temporary review/render artifacts
+tmp/
+
+# Formal experiment outputs are governed by manifests and checksums.
+# Raw datasets remain local unless explicitly selected for version control.
+Experiments/raw-data/*
+!Experiments/raw-data/.gitkeep
+!Experiments/raw-data/README.md
+Simulator/runs/*

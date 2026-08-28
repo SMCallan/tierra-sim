@@ -1,0 +1,30 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_id": "first-look-ecology-v1",
+  "ancestors": [
+    {
+      "lineage": "host",
+      "genome": [11, 0, 15, 0],
+      "count": 4,
+      "initial_energy": 200,
+      "coordinates": [
+        {"x": 2, "y": 2},
+        {"x": 5, "y": 2},
+        {"x": 8, "y": 2},
+        {"x": 11, "y": 2}
+      ]
+    },
+    {
+      "lineage": "parasite",
+      "genome": [14, 0, 11, 15, 0],
+      "count": 4,
+      "initial_energy": 200,
+      "coordinates": [
+        {"x": 2, "y": 3},
+        {"x": 5, "y": 3},
+        {"x": 8, "y": 3},
+        {"x": 11, "y": 3}
+      ]
+    }
+  ]
+}

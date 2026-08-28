@@ -1,0 +1,68 @@
+{
+  "identity": {
+    "schema_version": "0.1.0",
+    "engine_specification": "0.1",
+    "configuration_name": "first-look-demonstration-v1",
+    "purpose": "demonstration",
+    "run_id": "first-look",
+    "condition_id": "mixed-ecology-demo",
+    "replicate_id": 0,
+    "seed": 20260718
+  },
+  "duration": {
+    "completed_ticks": 200,
+    "sample_every_ticks": 20,
+    "checkpoint_every_ticks": 100,
+    "state_hash_every_ticks": 20
+  },
+  "world": {
+    "width": 12,
+    "height": 8,
+    "topology": "toroidal_von_neumann",
+    "cell_capacity": 1,
+    "activation_order": "seeded_random_sequential",
+    "exogenous_death_probability": {"numerator": 1, "denominator": 1000}
+  },
+  "energy": {
+    "fixed_point_scale": 1,
+    "environmental_income": 3,
+    "maximum_organism_energy": 300,
+    "base_instruction_cost": 1,
+    "genome_maintenance": {"rule": "linear_floor", "numerator": 1, "denominator": 8},
+    "autonomous_reproduction_cost": 20,
+    "offspring_endowment": 30,
+    "exec_nbr_attempt_cost": 3,
+    "exploit_levy": 10,
+    "splice_attempt_cost": 1,
+    "splice_success_cost": 5,
+    "computation_rewards": {"and": 4, "xor": 4, "equ": 4, "add": 4}
+  },
+  "reproduction": {
+    "cooldown_ticks": 5,
+    "min_genome_length": 2,
+    "max_genome_length": 24,
+    "mutation_probability": {"numerator": 1, "denominator": 50},
+    "mutation_weights": {"point": 6, "insertion": 2, "deletion": 2}
+  },
+  "hgt": {
+    "success_probability": {"numerator": 1, "denominator": 2},
+    "min_chunk_length": 1,
+    "max_chunk_length": 3
+  },
+  "measurement": {
+    "bucket_count": 5,
+    "bucket_length_ticks": 20,
+    "informative_action_threshold": 5,
+    "sensitivity_thresholds": [1, 10],
+    "functional_class_boundaries": {
+      "autonomous_max": {"numerator": 1, "denominator": 10},
+      "exploitative_min": {"numerator": 9, "denominator": 10}
+    },
+    "detailed_event_logging": true
+  },
+  "initial_population": {
+    "fixture_path": "runner/presets/demo-fixture.json",
+    "fixture_sha256": "014830fabea4149183477e1c350230783fa0680a776b5309fd81cd834fff619e",
+    "placement_algorithm": "fixed"
+  }
+}

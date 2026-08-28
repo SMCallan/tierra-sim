@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_id": "calibration-local-encounter-density-v4",
+  "ancestors": [
+    {
+      "lineage": "host",
+      "genome": [11, 1, 2, 4, 3, 11, 15, 11],
+      "count": 512,
+      "initial_energy": 120
+    },
+    {
+      "lineage": "parasite",
+      "genome": [14, 14, 1, 2, 5, 3, 14, 14, 15],
+      "count": 512,
+      "initial_energy": 120
+    }
+  ]
+}

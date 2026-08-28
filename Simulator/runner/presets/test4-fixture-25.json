@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.2.0",
+  "fixture_id": "test4-fixture-25",
+  "ancestors": [
+    {
+      "lineage": "host",
+      "genome": [
+        11,
+        1,
+        2,
+        4,
+        3,
+        11,
+        15,
+        11
+      ],
+      "count": 1024,
+      "initial_energy": 120
+    }
+  ]
+}

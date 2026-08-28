@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_id": "calibration-performance-dense-ecology-v1",
+  "ancestors": [
+    {
+      "lineage": "host",
+      "genome": [11, 0, 15, 0],
+      "count": 192,
+      "initial_energy": 200
+    },
+    {
+      "lineage": "parasite",
+      "genome": [14, 0, 11, 15, 0],
+      "count": 64,
+      "initial_energy": 200
+    }
+  ]
+}

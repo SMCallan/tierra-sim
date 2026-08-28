@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.4.0",
+  "sweep_id": "calibration-64x64-shared-resource-v9-confirmation",
+  "stage": "resource_screen",
+  "base_configuration_path": "runner/presets/calibration-sweep-base-config-v9.json",
+  "fixture_path": "runner/presets/calibration-sweep-fixture-v6.json",
+  "replicate_seeds": [202608011, 202608012, 202608013],
+  "report_every_ticks": 200,
+  "late_window_fraction": {"numerator": 1, "denominator": 4},
+  "factors": {
+    "environmental_income": [0],
+    "exogenous_death_probability": [
+      {"label": "turnover-1-in-1000", "numerator": 1, "denominator": 1000}
+    ],
+    "autonomous_reproduction_cost": [45],
+    "reproduction_cooldown_ticks": [10],
+    "exec_nbr_attempt_cost": [1],
+    "exec_nbr_donor_copy_rule": ["cyclic_copy_search"],
+    "resource_regeneration_per_tick": [2, 3],
+    "resource_harvest_per_activation": [3, 4]
+  },
+  "screening_acceptance": {
+    "late_mean_occupancy_min": 0.20,
+    "late_mean_occupancy_max": 0.80,
+    "late_maximum_occupancy": 0.90,
+    "minimum_final_lineage_proportion": 0,
+    "minimum_late_autonomous_successes": 1,
+    "minimum_late_exploitative_successes": 1,
+    "minimum_late_hgt_donor_opportunities": 1,
+    "minimum_late_hgt_successes": 1,
+    "minimum_late_eligibility_proportion": 0.25,
+    "computation_created_energy_share_min": 0.0001,
+    "computation_created_energy_share_max": 0.25,
+    "maximum_sampled_genome_bound_proportion": 0.50,
+    "minimum_late_mean_host_parasite_contact_edges": 0,
+    "minimum_both_lineages_observed_through_tick": 1000,
+    "minimum_whole_run_exploitative_successes": 10,
+    "late_mean_resource_stock_proportion_min": 0.05,
+    "late_mean_resource_stock_proportion_max": 0.95,
+    "maximum_late_mean_depleted_cell_proportion": 0.90,
+    "maximum_projected_single_run_minutes": 120,
+    "maximum_peak_rss_bytes": 4294967296
+  },
+  "confirmation_requirements": {
+    "minimum_ticks": 10000,
+    "minimum_independent_seeds": 3,
+    "minimum_late_eligibility_proportion": 0.25,
+    "requires_full_5000_tick_behaviour_window": true
+  },
+  "ranking_order": [
+    "mandatory_gate_failures_ascending",
+    "ecological_gate_passes_descending",
+    "distance_from_0.50_late_occupancy_ascending",
+    "distance_from_0.50_late_resource_stock_ascending",
+    "interaction_exposure_through_tick_descending",
+    "late_eligibility_proportion_descending",
+    "projected_single_run_minutes_ascending"
+  ],
+  "prohibited_selection_inputs": [
+    "mean_divergence",
+    "maximum_divergence",
+    "divergence_onset",
+    "final_lineage_abundance",
+    "visual_preference"
+  ]
+}

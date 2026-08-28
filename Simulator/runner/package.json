@@ -1,0 +1,23 @@
+{
+  "name": "@tierra-sim/runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/cli.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.test.json --noEmit",
+    "demo": "node dist/cli.js demo",
+    "benchmark": "node dist/cli.js benchmark",
+    "calibrate": "node dist/cli.js calibrate",
+    "run": "node dist/cli.js run"
+  },
+  "dependencies": {
+    "@tierra-sim/engine": "0.1.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
+  }
+}
