@@ -33,6 +33,7 @@ If something goes wrong, see **[Troubleshooting](#troubleshooting)** at the bott
 ## What the simulation actually does
 
 Picture a grid. Each square can hold one organism.
+<img width="1512" height="862" alt="Screenshot 2026-08-28 at 12 21 19" src="https://github.com/user-attachments/assets/08a1b286-35b1-4d13-b2b8-32d7ef9d3397" />
 
 Every organism is a short program — a string of simple instructions. It runs its own code, and
 running that code costs energy. Earn enough energy and it copies itself into a neighbouring square.
