@@ -187,7 +187,6 @@ Runs the analysis tests.
 | `Simulator/engine` | The simulation itself: instruction set, world, energy, reproduction, measurement |
 | `Simulator/runner` | Runs experiments without a browser; writes results with checksums |
 | `Simulator/app` | The visual cockpit |
-| `Simulator/docs` | Specifications — the rules the engine is required to follow |
 | `Analysis` | Turns raw results into the statistics and figures |
 
 The engine and the analysis package have **no runtime dependencies**. Everything they do, they do

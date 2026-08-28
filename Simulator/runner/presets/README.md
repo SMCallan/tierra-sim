@@ -1,43 +1,44 @@
-# Runner Preset Catalogue
+# Runner presets
 
-This directory is path-sensitive compatibility storage, not a list of equally valid current
-experiments. Always choose a file explicitly and confirm its evidence class before execution.
+Input files for the runner. Paths inside a sweep are resolved relative to `Simulator/`, so run the
+commands from there.
 
-## Demonstration and performance inputs (4)
+A sweep file names a base configuration and a fixture; all three are needed together.
 
-- `demo-config.json`, `demo-fixture.json`
-- `calibration-performance-config.json`, `calibration-performance-fixture.json`
+## The formal experiment
 
-These support hands-on demonstration or performance diagnosis. They are not governed ecology
-qualification inputs.
+`batch-formal-mpr-factorial-v2.json` — the 60-run factorial reported in the dissertation.
 
-## Governed retained calibration inputs (17)
+```bash
+node runner/dist/cli.js batch --batch runner/presets/batch-formal-mpr-factorial-v2.json --output ../Experiments/raw-data/formal-v2 --concurrency 4
+```
 
-- sweep specifications `calibration-sweep-v1.json` through `v6.json`, plus `v8.json`;
-- base configurations for v1, v3, v4, v6, and v8;
-- fixtures for v1, v3, v4, and v6 (v8 deliberately reuses the v6 fixture); and
-- `exec-nbr-donor-compatibility-control-v7.json`.
+## Demonstration
 
-These files reproduce historical, versioned calibration questions. `RETAINED` does not mean that
-a condition qualified, and historical files must not be edited to express a later decision.
+`demo-config.json` and `demo-fixture.json` — the small ecology behind `npm run demo` and the
+browser cockpit.
 
-## Post-v8 dirty diagnostic inputs (28 tracked)
+## Performance
 
-- `calibration-sweep-test2.json`, `calibration-sweep-test2-extended.json`,
-  `calibration-sweep-test3.json`, and `calibration-sweep-test5.json`;
-- the fifteen `test4-{base,fixture,sweep}-*` files; and
-- the nine `test6-{base,fixture,sweep}-*` files.
+`calibration-performance-config.json` and `calibration-performance-fixture.json` — inputs for
+`npm run benchmark`.
 
-These are retained inputs associated with dirty development runs. They are **DIAGNOSTIC**, not
-calibration qualification, and should not be used as templates until SCI-001 completes.
+## Calibration screens
 
-## Untracked qualification-like inputs (2)
+Versioned screens used to find a workable ecology before the formal experiment, kept so those runs
+can be reproduced:
 
-`calibration-sweep-base-config-qualification.json` and `calibration-sweep-qualification.json`
-were used by six dirty 10,000-tick development runs. Preserve them in place pending SCI-001. Do
-not run or commit them as active qualification inputs merely because their names contain
-“qualification.”
+| Sweep | Question it asked |
+|---|---|
+| `calibration-sweep-v1.json` | Energy and turnover |
+| `calibration-sweep-v6.json` | Spatial inoculum and reproduction economics |
+| `calibration-sweep-v8.json` | Local renewable resource |
+| `calibration-sweep-v9.json` | Shared neighbourhood depletion — the qualifying ecology |
+| `calibration-sweep-v9-confirmation.json` | Three-seed confirmation of v9 |
+| `exec-nbr-donor-compatibility-control-v7.json` | Donor-compatibility mechanism control |
 
-Historical files remain here because sweep/base/fixture paths are resolved relative to
-`Simulator/`, and moving or reformatting JSON changes compatibility or content identities. Future
-governed inputs belong under `Experiments/configurations/<evidence-class>/`.
+Their base configurations and fixtures sit alongside them. An earlier version number means an
+earlier question, not a worse one — most produced no qualifying ecology, which is why later
+versions exist.
+
+Calibration has no default: every run must name its sweep with `--sweep FILE`.

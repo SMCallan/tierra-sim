@@ -45,18 +45,6 @@ The runner adds live sample summaries, time series for population, divergence, f
 lineage information, a pedigree export, full provenance capture, and atomic run directories that are
 never overwritten.
 
-## Specifications
-
-These define what the engine is *required* to do. The implementation follows them; where they
-disagree, the specification is correct.
-
-- [`docs/engine-specification.md`](docs/engine-specification.md) — ecological and virtual-machine rules
-- [`docs/configuration-and-output-specification.md`](docs/configuration-and-output-specification.md) — inputs, provenance, outputs
-- [`docs/reproducibility-and-validation.md`](docs/reproducibility-and-validation.md) — the randomness contract and validation gates
-- [`docs/calibration-and-performance-harness.md`](docs/calibration-and-performance-harness.md) — how an ecology is qualified
-- [`docs/interactive-cockpit.md`](docs/interactive-cockpit.md) — the interface
-- [`docs/first-look-testing.md`](docs/first-look-testing.md) — the headless workflow
-
 ## Calibration
 
 Calibration screens candidate ecologies before an experiment is allowed to use one.
