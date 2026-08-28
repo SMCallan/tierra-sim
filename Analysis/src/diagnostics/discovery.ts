@@ -1,7 +1,7 @@
 /**
  * Run discovery and registry reconciliation.
  *
- * Governed by Analysis/specifications/sci-001-post-v8-diagnostic-audit-v1.0.md §2.
+ * Implements §2 of the SCI-001 post-v8 diagnostic audit specification.
  * Runs are discovered by walking the raw tree, never hard-coded, and the discovered set is
  * reconciled against the committed registry. The registry is never rewritten to match.
  */

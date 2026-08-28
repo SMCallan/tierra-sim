@@ -1,7 +1,7 @@
 /**
  * Checksum list parsing and SHA-256 re-verification.
  *
- * Governed by Analysis/specifications/sci-001-post-v8-diagnostic-audit-v1.0.md §3.
+ * Implements §3 of the SCI-001 post-v8 diagnostic audit specification.
  * Integrity is recomputed, never inherited from a prior verification. A mismatch is reported,
  * not thrown: concealing a corrupt bundle would be worse than reporting one.
  */

@@ -11,7 +11,6 @@ No runtime dependencies.
 |---|---|
 | `src/formal/` | The pre-registered analysis: hypothesis tests, descriptives, sensitivities, figures |
 | `src/diagnostics/` | Auditing tools for exploratory calibration campaigns |
-| `specifications/` | The analysis plans and acceptance rules, frozen before their outputs existed |
 | `config/` | Immutable analysis parameters and input-batch identifiers |
 | `tests/` | 151 statistical and data-validation tests |
 

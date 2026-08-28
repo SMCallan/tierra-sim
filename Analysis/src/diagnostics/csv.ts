@@ -1,7 +1,7 @@
 /**
  * Deterministic CSV emission and strict CSV parsing.
  *
- * Governed by Analysis/specifications/sci-001-post-v8-diagnostic-audit-v1.0.md §8:
+ * Implements §8 of the SCI-001 post-v8 diagnostic audit specification:
  * stable column order, stable row order, `\n` endings, RFC 4180 quoting, fixed numeric
  * formatting, and no timestamps or absolute paths.
  */

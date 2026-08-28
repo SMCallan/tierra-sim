@@ -1,8 +1,8 @@
 /**
  * SCI-001 post-v8 diagnostic audit — command-line entry point.
  *
- * Governed by Analysis/specifications/sci-001-post-v8-diagnostic-audit-v1.0.md as amended by
- * Analysis/specifications/sci-001-post-v8-diagnostic-audit-v1.1-amendment.md.
+ * Implements the SCI-001 post-v8 diagnostic audit specification, as amended by its v1.1
+ * amendment.
  * Read-only with respect to every input. Writes only the declared tables in the declared
  * output directory. Emits no timestamp, hostname, or absolute path into any payload (risk R-002).
  *
