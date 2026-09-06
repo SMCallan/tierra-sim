@@ -123,7 +123,8 @@ export interface RunOutcomes {
    */
   readonly mean_divergence_after_burn_in: number | null;
   /** Trapezoidal area under Δ_D over ticks after burn-in, normalised by elapsed ticks. */
-  readonly auc_divergence_after_burn_in: number | null;
+  /** SAP §2.4: primary host-lineage mean × defined observation duration, in `Δ_D`·ticks. */
+  readonly sap_auc_host_delta_ticks: number | null;
   readonly late_window_mean_divergence: number | null;
   readonly parasite_mean_divergence_after_burn_in: number | null;
   readonly mean_eligible_proportion_after_burn_in: number | null;
@@ -197,6 +198,34 @@ export function definedMean(values: readonly (number | null)[]): number | null {
  * runs of different length. Undefined points break the integration into segments rather than being
  * interpolated across, because an undefined Δ_D is not a value of zero.
  */
+/**
+ * Observation duration over which the series is *defined*, in ticks.
+ *
+ * Undefined samples break the interval rather than being bridged: an undefined `Δ_D` is not a value
+ * of zero, so a gap contributes no duration. SAP §2.4 defines area under the curve as the primary
+ * mean multiplied by this duration, which is why it is computed separately rather than folded into
+ * a normalised average.
+ */
+export function definedObservationDuration(
+  points: readonly { readonly tick: number; readonly value: number | null }[],
+): number {
+  let span = 0;
+  for (let index = 1; index < points.length; index += 1) {
+    const previous = points[index - 1];
+    const current = points[index];
+    if (
+      previous === undefined ||
+      current === undefined ||
+      previous.value === null ||
+      current.value === null
+    ) {
+      continue;
+    }
+    span += current.tick - previous.tick;
+  }
+  return span;
+}
+
 export function normalisedAuc(
   points: readonly { readonly tick: number; readonly value: number | null }[],
 ): number | null {
@@ -339,12 +368,15 @@ export function runOutcomes(bundle: BundleInputs, parameters: OutcomeParameters)
     parasite_extinction_tick: extinctionSample?.tick ?? null,
 
     mean_divergence_after_burn_in: definedMean(totals),
-    auc_divergence_after_burn_in: normalisedAuc(
-      afterBurnIn.map((sample) => ({
+    sap_auc_host_delta_ticks: ((): number | null => {
+      const hostPoints = afterBurnIn.map((sample) => ({
         tick: sample.tick,
-        value: divergenceOf(sample, "total").mean_divergence,
-      })),
-    ),
+        value: divergenceOf(sample, "host").mean_divergence,
+      }));
+      const duration = definedObservationDuration(hostPoints);
+      const hostMean = definedMean(hostPoints.map((point) => point.value));
+      return hostMean === null || duration === 0 ? null : hostMean * duration;
+    })(),
     late_window_mean_divergence: definedMean(
       late.map((sample) => divergenceOf(sample, "total").mean_divergence),
     ),

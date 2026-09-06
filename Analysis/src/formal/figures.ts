@@ -1,5 +1,5 @@
 /**
- * Figures 4.1 to 4.3, emitted as standalone SVG.
+ * Figures 4.4 to 4.6, emitted as standalone SVG.
  *
  * SVG rather than a plotting library because the `Analysis` package has no runtime dependencies and
  * should not acquire one to draw three figures. It is also the right format for a dissertation: it
@@ -169,7 +169,7 @@ function figureSize(): { width: number; height: number } {
 }
 
 /* ---------------------------------------------------------------------------------------------
- * Figure 4.1 — host-lineage divergence trajectories
+ * Figure 4.4 — host-lineage divergence trajectories
  * ------------------------------------------------------------------------------------------- */
 
 /**
@@ -181,11 +181,25 @@ function figureSize(): { width: number; height: number } {
  * misreading Chapter 4 §4.3.4 exists to prevent. The reader should see that every condition sits
  * near 0.89 and that the differences between them are small.
  */
-export function figureDivergenceTrajectories(runs: readonly FigureRun[], burnInTicks: number): string {
+export interface PanelReport {
+  readonly mutation: string;
+  readonly hgt: string;
+  /** Runs executed in this condition; the denominator for extinction. */
+  readonly runs: number;
+  /** Runs excluded by the SAP section 3 coverage floor. */
+  readonly excludedRuns: number;
+  readonly parasiteExtinctRuns: number;
+  readonly meanDegenerateSampleProportion: number;
+}
+
+export function figureDivergenceTrajectories(
+  runs: readonly FigureRun[],
+  burnInTicks: number,
+  reports: readonly PanelReport[] = [],
+): string {
   const { width, height } = figureSize();
   const parts: string[] = [];
 
-  parts.push(text("Figure 4.1  Host-lineage divergence over time, by condition", 20, 26, { size: 14, weight: "bold" }));
   parts.push(
     text(
       "Individual runs in pale blue; condition mean in solid blue; dashed line marks the 10,000-tick burn-in.",
@@ -252,6 +266,25 @@ export function figureDivergenceTrajectories(runs: readonly FigureRun[], burnInT
       parts.push(
         text(`μ ${mutation}   HGT ${hgt}`, box.x + 4, box.y - 6, { size: 11, weight: "bold" }),
       );
+      const report = reports.find((entry) => entry.mutation === mutation && entry.hgt === hgt);
+      if (report !== undefined) {
+        parts.push(
+          text(
+            `n=${String(report.runs - report.excludedRuns)} of ${String(report.runs)} · ` +
+              `excl=${String(report.excludedRuns)}`,
+            box.x + 4,
+            box.y + box.height - 20,
+            { size: 15, fill: MUTED },
+          ),
+          text(
+            `extinct=${String(report.parasiteExtinctRuns)}/${String(report.runs)} · ` +
+              `deg=${(report.meanDegenerateSampleProportion * 100).toFixed(1)}%`,
+            box.x + 4,
+            box.y + box.height - 5,
+            { size: 15, fill: MUTED },
+          ),
+        );
+      }
       if (column === 0) {
         for (const tickValue of [0, 0.5, 1]) {
           parts.push(
@@ -286,7 +319,7 @@ export function figureDivergenceTrajectories(runs: readonly FigureRun[], burnInT
 }
 
 /* ---------------------------------------------------------------------------------------------
- * Figure 4.2 — lineage populations
+ * Figure 4.5 — lineage populations
  * ------------------------------------------------------------------------------------------- */
 
 /**
@@ -300,7 +333,6 @@ export function figureLineagePopulations(runs: readonly FigureRun[]): string {
   const { width, height } = figureSize();
   const parts: string[] = [];
 
-  parts.push(text("Figure 4.2  Lineage populations over time, by condition", 20, 26, { size: 14, weight: "bold" }));
   parts.push(
     text(
       "Host in blue, parasite in orange (thicker, dashed). Triangles mark the tick of parasite extinction.",
@@ -384,7 +416,7 @@ export function figureLineagePopulations(runs: readonly FigureRun[]): string {
 }
 
 /* ---------------------------------------------------------------------------------------------
- * Figure 4.3 — the divergence distribution
+ * Figure 4.6 — the divergence distribution
  * ------------------------------------------------------------------------------------------- */
 
 /**
@@ -434,7 +466,6 @@ export function figureDivergenceDistribution(
   const observedPeak = Math.max(...hostShare, ...parasiteShare, 0.05);
   const peak = Math.min(1, Math.ceil(observedPeak * 10) / 10);
 
-  parts.push(text("Figure 4.3  Distribution of individual divergence in the late window", 20, 26, { size: 14, weight: "bold" }));
   parts.push(
     text(
       `Ticks ${lateWindowFrom.toLocaleString("en-GB")}–100,000, all 36 factorial runs pooled. Bars are within-lineage shares.`,

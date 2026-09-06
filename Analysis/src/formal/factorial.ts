@@ -117,6 +117,8 @@ export interface CellSummary {
   readonly populationDivergenceMean: number | null;
   readonly parasiteExtinctRuns: number;
   readonly meanDegenerateSampleProportion: number;
+  /** Runs whose mean eligible coverage fell below the SAP section 3 floor. */
+  readonly excludedRuns: number;
 }
 
 /**
@@ -156,6 +158,7 @@ export function summariseCells(runs: readonly ClassifiedRun[]): CellSummary[] {
         meanDegenerateSampleProportion: mean(
           bucket.map((run) => run.outcomes.degenerate_sample_proportion),
         ),
+        excludedRuns: bucket.filter((run) => !run.outcomes.divergence_reliably_estimable).length,
       };
     })
     .sort((left, right) =>

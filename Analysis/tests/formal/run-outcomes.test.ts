@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   definedMean,
+  definedObservationDuration,
   normalisedAuc,
   onsetTick,
   runOutcomes,
@@ -255,5 +256,42 @@ describe("total population extinction", () => {
     expect(outcomes.parasite_extant_at_end).toBe(false);
     expect(outcomes.lineage_information_defined_samples).toBe(1);
     expect(outcomes.lineage_information_undefined_samples).toBe(1);
+  });
+});
+
+
+describe("SAP §2.4 observation duration", () => {
+  it("sums only the intervals where the series is defined", () => {
+    expect(
+      definedObservationDuration([
+        { tick: 0, value: 0.5 },
+        { tick: 200, value: 0.6 },
+        { tick: 400, value: null },
+        { tick: 600, value: 0.7 },
+        { tick: 800, value: 0.8 },
+      ]),
+    ).toBe(400);
+  });
+
+  it("does not bridge an undefined gap, because undefined is not zero", () => {
+    expect(
+      definedObservationDuration([
+        { tick: 0, value: 0.5 },
+        { tick: 200, value: null },
+        { tick: 400, value: 0.9 },
+      ]),
+    ).toBe(0);
+  });
+
+  it("gives the plan's area when multiplied by the primary mean", () => {
+    const points = [
+      { tick: 0, value: 0.8 },
+      { tick: 200, value: 0.9 },
+      { tick: 400, value: 1.0 },
+    ];
+    const duration = definedObservationDuration(points);
+    expect(duration).toBe(400);
+    // primary mean × defined duration, in Δ_D·ticks — not a normalised average
+    expect(0.9 * duration).toBeCloseTo(360, 6);
   });
 });

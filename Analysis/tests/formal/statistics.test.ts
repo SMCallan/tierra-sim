@@ -324,3 +324,15 @@ describe("Holm correction", () => {
     expect(holmAdjust([])).toEqual([]);
   });
 });
+
+describe("median on even-sized samples", () => {
+  it("averages the middle two rather than taking the upper of them", () => {
+    // The onset medians were briefly wrong because sorted[floor(n/2)] takes the third of four.
+    expect(quantile([500, 700, 900, 1100], 0.5)).toBeCloseTo(800, 9);
+    expect(quantile([1200, 1600, 1800, 2000], 0.5)).toBeCloseTo(1700, 9);
+  });
+
+  it("still returns the middle value for odd-sized samples", () => {
+    expect(quantile([600, 800, 1900], 0.5)).toBeCloseTo(800, 9);
+  });
+});

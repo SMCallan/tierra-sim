@@ -32,6 +32,7 @@ import {
   type ClassifiedRun,
 } from "./factorial.ts";
 import { SAP_V1_PARAMETERS, type BundleInputs } from "./run-outcomes.ts";
+import { quantile } from "./statistics.ts";
 import {
   activeOnlyLineageInformation,
   attemptDiagnostic,
@@ -46,6 +47,7 @@ import {
   figureDivergenceTrajectories,
   figureLineagePopulations,
   type FigureRun,
+  type PanelReport,
 } from "./figures.ts";
 
 /* ---------------------------------------------------------------------------------------------
@@ -86,7 +88,7 @@ Options:
                       each holding manifest.json and measurements.json. Never written to.
   --output DIRECTORY  Write results.md (and figures, with --figures) here. Without this the
                       report goes to stdout and nothing is written.
-  --figures           Also emit figures 4.1 to 4.3 as SVG. Requires --output.
+  --figures           Also emit figures 4.4 to 4.6 as SVG. Requires --output.
   --quiet             Suppress the progress line while bundles are read.
   --help              Show this help.
 
@@ -382,12 +384,13 @@ function buildReport(
     "different before and after parasite extinction.",
     "",
     table(
-      ["μ", "HGT", "n", "host `Δ_D`", "sd", "population `Δ_D`", "parasite extinct", "degenerate"],
-      ["r", "r", "r", "r", "r", "r", "r", "r"],
+      ["μ", "HGT", "n", "excluded", "host `Δ_D`", "sd", "population `Δ_D`", "parasite extinct", "degenerate"],
+      ["r", "r", "r", "r", "r", "r", "r", "r", "r"],
       analysis.cells.map((cell) => [
         cell.mutation,
         cell.hgt,
         String(cell.runs),
+        String(cell.excludedRuns),
         num(cell.hostDivergenceMean),
         num(cell.hostDivergenceSd),
         num(cell.populationDivergenceMean),
@@ -505,12 +508,61 @@ function buildReport(
 
   /* -- Sensitivities ----------------------------------------------------------------------- */
 
+  const factorialOutcomes = classified.filter((run) => run.block === "factorial");
+  const byCondition = new Map<string, typeof factorialOutcomes>();
+  for (const run of factorialOutcomes) {
+    const key = `${String(run.mutation)}|${String(run.hgt)}`;
+    byCondition.set(key, [...(byCondition.get(key) ?? []), run]);
+  }
+  const defined = (values: readonly (number | null)[]): number[] =>
+    values.filter((value): value is number => value !== null);
+  const meanOrUndefined = (values: readonly number[], format: (value: number) => string): string =>
+    values.length === 0 ? "undefined" : format(values.reduce((x, y) => x + y, 0) / values.length);
   sections.push(
-    "## 7. Sensitivity analyses (SAP §6, with Amendment 2)",
+    "## 7. Secondary descriptives (SAP §2.3)",
+    "",
+    "Reported, not tested. Onset is the tick at which a run first reaches the stated fraction of its",
+    "own post-burn-in asymptote, summarised here as the median over the runs in a condition where it",
+    "is estimable. The plan also promised block-bootstrap uncertainty for onset but fixed no seed for",
+    "it, and the reporting path was absent at execution; that omission is recorded as a deviation in",
+    "§9 rather than resolved by choosing a seed after the fact. These medians are descriptive summaries",
+    "of per-run values, not newly pre-registered inferential statistics.",
+    "",
+    table(
+      ["μ", "HGT", "onset 50% (est.)", "onset 90% (est.)", "parasite `Δ_D`", "eligible", "inactive", "AUC (`Δ_D`·ticks)"],
+      ["r", "r", "r", "r", "r", "r", "r", "r"],
+      [...byCondition.entries()]
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([key, bucket]) => {
+          const [mutation = "", hgt = ""] = key.split("|");
+          const o50 = defined(bucket.map((run) => run.outcomes.onset_tick_50));
+          const o90 = defined(bucket.map((run) => run.outcomes.onset_tick_90));
+          const par = defined(bucket.map((run) => run.outcomes.parasite_mean_divergence_after_burn_in));
+          const med = (values: readonly number[]): string =>
+            values.length === 0
+              ? "undefined"
+              : `${String(Math.round(quantile(values, 0.5)))} (${String(values.length)}/${String(bucket.length)})`;
+          return [
+            mutation,
+            hgt,
+            med(o50),
+            med(o90),
+            par.length === 0 ? "undefined" : num(par.reduce((x, y) => x + y, 0) / par.length),
+            meanOrUndefined(defined(bucket.map((run) => run.outcomes.mean_eligible_proportion_after_burn_in)), percent),
+            meanOrUndefined(defined(bucket.map((run) => run.outcomes.mean_inactive_proportion_after_burn_in)), percent),
+            meanOrUndefined(defined(bucket.map((run) => run.outcomes.sap_auc_host_delta_ticks)), num),
+          ];
+        }),
+    ),
+    "",
+  );
+
+  sections.push(
+    "## 8. Sensitivity analyses (SAP §6, with Amendment 2)",
     "",
     "All six were declared in advance and are reported whether or not they agree with the primary.",
     "",
-    "### 7.1 Burn-in",
+    "### 8.1 Burn-in",
     "",
     table(
       ["burn-in", "host `Δ_D`", "population `Δ_D`", "runs", "excluded"],
@@ -524,7 +576,7 @@ function buildReport(
       ]),
     ),
     "",
-    "### 7.2 Informative-action threshold",
+    "### 8.2 Informative-action threshold",
     "",
     "Read from the `sensitivity` array the engine computed at sampling time; per-organism action",
     "counts are not exported, so a post-hoc recomputation is impossible.",
@@ -540,7 +592,7 @@ function buildReport(
       ]),
     ),
     "",
-    "### 7.3 Functional-class boundaries",
+    "### 8.3 Functional-class boundaries",
     "",
     table(
       ["boundaries", "autonomous", "mixed", "exploitative"],
@@ -559,7 +611,7 @@ function buildReport(
 
   const activeOnly = activeOnlyLineageInformation(factorialBundles);
   sections.push(
-    "### 7.4 Active-only lineage information",
+    "### 8.4 Active-only lineage information",
     "",
     table(
       ["classes", "decoupling"],
@@ -572,13 +624,13 @@ function buildReport(
     "",
     `Over ${integer(activeOnly.samplesUsed)} samples. Excluding inactive organisms does not produce the result.`,
     "",
-    "### 7.5 Population `Δ_D` in place of host-lineage — the `D042` confound, visible",
+    "### 8.5 Population `Δ_D` in place of host-lineage — the `D042` confound, visible",
     "",
     "Reported to demonstrate the confound, never as an alternative answer. The per-cell gap in §3",
     "tracks parasite survival: cells where parasites persist score lower on the population measure",
     "without any lineage behaving differently.",
     "",
-    "### 7.6 Attempt-based diagnostic (lineage level, Amendment 2)",
+    "### 8.6 Attempt-based diagnostic (lineage level, Amendment 2)",
     "",
     "**Not a per-organism quantity.** Attempts are exported per lineage per interval, so this is an",
     "intent-versus-realisation contrast at lineage level and cannot show that a particular organism",
@@ -596,6 +648,26 @@ function buildReport(
     "",
   );
 
+  sections.push(
+    "## 9. Reporting deviations from the frozen plan",
+    "",
+    "One, in reporting rather than in testing. SAP §2.3 lists onset among the secondary",
+    "descriptives and §4.2 specifies a block-bootstrap interval for it. Condition medians are",
+    "reported in section 7 above and per-run values in the supplementary table cited below, but",
+    "the interval is absent. The plan fixes the block length at 25 samples but states neither the",
+    "resample count nor the seed value, although its §8 undertakes that bootstrap seeds are fixed",
+    "and recorded. That implementation specification could be completed now, but only after the",
+    "outcomes have been inspected, which would make it a post-execution amendment to the method",
+    "rather than execution of the frozen plan. The point estimates are therefore reported as",
+    "descriptive, without an interval, and the omission is recorded as `D057` in the discrepancy",
+    "register.",
+    "",
+    "Per-run values: `supplementary.csv`, written beside this report in the output directory.",
+    "",
+    "No test, estimand, threshold or hypothesis differs from the plan.",
+    "",
+  );
+
   return `${sections.join("\n")}\n`;
 }
 
@@ -606,6 +678,7 @@ function buildReport(
 function writeFigures(
   loaded: readonly { readonly bundle: BundleInputs; readonly classified: ClassifiedRun }[],
   outputDirectory: string,
+  reports: readonly PanelReport[] = [],
 ): string[] {
   const figureRuns: FigureRun[] = loaded
     .filter((entry) => entry.classified.block === "factorial")
@@ -631,12 +704,12 @@ function writeFigures(
   };
 
   emit(
-    "figure-4-1-divergence-trajectories.svg",
-    figureDivergenceTrajectories(figureRuns, SAP_V1_PARAMETERS.burnInTicks),
+    "figure-4-4-divergence-trajectories.svg",
+    figureDivergenceTrajectories(figureRuns, SAP_V1_PARAMETERS.burnInTicks, reports),
   );
-  emit("figure-4-2-lineage-populations.svg", figureLineagePopulations(figureRuns));
+  emit("figure-4-5-lineage-populations.svg", figureLineagePopulations(figureRuns));
   emit(
-    "figure-4-3-divergence-distribution.svg",
+    "figure-4-6-divergence-distribution.svg",
     figureDivergenceDistribution(figureRuns, lateWindowFrom),
   );
   return written;
@@ -668,7 +741,31 @@ function main(): void {
 
     mkdirSync(options.output, { recursive: true });
     writeFileSync(join(options.output, "results.md"), report);
-    const written = options.figures ? writeFigures(loaded, options.output) : [];
+    // Per-run values behind the condition medians of section 7, so the summaries can be audited
+    // without rerunning the analysis. SAP section 3 also requires a degenerate proportion per run.
+    const supplementary = [
+      "run_id,block,mutation,hgt,onset_tick_50,onset_tick_90,degenerate_sample_proportion,mean_eligible_proportion,sap_auc_host_delta_ticks",
+      ...loaded
+        .map((entry) => entry.classified)
+        .map((run) =>
+          [
+            run.outcomes.run_id,
+            run.block,
+            String(run.mutation ?? ""),
+            String(run.hgt ?? ""),
+            run.outcomes.onset_tick_50 ?? "",
+            run.outcomes.onset_tick_90 ?? "",
+            run.outcomes.degenerate_sample_proportion,
+            run.outcomes.mean_eligible_proportion_after_burn_in ?? "",
+            run.outcomes.sap_auc_host_delta_ticks ?? "",
+          ].join(","),
+        ),
+    ].join("\n");
+    writeFileSync(join(options.output, "supplementary.csv"), `${supplementary}\n`);
+    const factorialCells = summariseCells(
+      loaded.map((entry) => entry.classified).filter((run) => run.block === "factorial"),
+    );
+    const written = options.figures ? writeFigures(loaded, options.output, factorialCells) : [];
 
     if (!options.quiet) {
       process.stderr.write(

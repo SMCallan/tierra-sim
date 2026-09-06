@@ -26,7 +26,7 @@ function outcomes(overrides: Partial<RunOutcomes> & { condition_id: string; run_
     parasite_extant_at_end: true,
     parasite_extinction_tick: null,
     mean_divergence_after_burn_in: 0.85,
-    auc_divergence_after_burn_in: 0.85,
+    sap_auc_host_delta_ticks: 76_500,
     late_window_mean_divergence: 0.85,
     parasite_mean_divergence_after_burn_in: 0.01,
     mean_eligible_proportion_after_burn_in: 0.42,
