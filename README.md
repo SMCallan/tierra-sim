@@ -1,255 +1,266 @@
 # TIERRA-SIM
 
-**A small world where digital organisms live, reproduce, mutate, and swap code — and a tool that
-measures how quickly they stop behaving like their ancestors.**
+**A deterministic digital-evolution simulator for studying how mutation and horizontal gene transfer separate behaviour from ancestry.**
 
-This is the software I built for my MSc dissertation. This page tells you what it does, how to run
-it, and what to look at first.
+TIERRA-SIM is the software artefact developed for my MSc dissertation. It models a small world in which digital organisms execute programs, reproduce, mutate, exchange code and compete for energy.
 
----
+This repository contains the simulator, browser interface, experiment runner and analysis software. It does not contain the dissertation or the 2.7 GB formal-results dataset.
 
-## Start here
+![The TIERRA-SIM cockpit showing the organism grid, live measurements and organism inspector](https://github.com/user-attachments/assets/08a1b286-35b1-4d13-b2b8-32d7ef9d3397)
 
-Three commands. About two minutes.
+## Quick start
+
+### Requirements
+
+- Node.js 24 or later
+- npm
+
+From the repository root:
 
 ```bash
 npm install --prefix Simulator
-```
-
-```bash
 npm run build --prefix Simulator
-```
-
-```bash
 npm run app --prefix Simulator
 ```
 
-That starts the cockpit and prints a local address — usually `http://127.0.0.1:5173`. Open it in
-your browser, click **Run**, and watch the world fill up.
+Open [http://127.0.0.1:4173/](http://127.0.0.1:4173/) and select **Run**.
 
-If something goes wrong, see **[Troubleshooting](#troubleshooting)** at the bottom.
+The simulation begins paused.
 
----
+## How it works
 
-## What the simulation actually does
+The world is a two-dimensional grid. Each occupied cell contains a digital organism represented by a short program.
 
-Picture a grid. Each square can hold one organism.
-<img width="1512" height="862" alt="The TIERRA-SIM cockpit: a 48x32 grid of coloured cells, each an organism, with live counts for population, births, horizontal transfers and mean divergence above it, and an inspector panel showing one organism's genome and behaviour on the right." src="https://github.com/user-attachments/assets/08a1b286-35b1-4d13-b2b8-32d7ef9d3397" />
+Organisms:
 
-Every organism is a short program — a string of simple instructions. It runs its own code, and
-running that code costs energy. Earn enough energy and it copies itself into a neighbouring square.
-Run out, and it dies.
+- execute instructions, consuming energy;
+- gain energy by performing functions;
+- reproduce into neighbouring cells;
+- undergo mutation during reproduction;
+- exchange genome fragments with neighbours through horizontal gene transfer; and
+- die when they exhaust their energy.
 
-Three things make it interesting:
+Two starting lineages are used:
 
-- **Mutation.** Copies aren't perfect. Instructions get changed, added, or dropped.
-- **Space.** Organisms can only interact with neighbours, so location matters.
-- **Horizontal transfer.** Organisms can copy fragments of code from a neighbour, not just from a
-  parent — so traits move sideways, not only down the family tree.
+- **Hosts**, which gain energy through their own functional activity.
+- **Parasites**, which exploit neighbouring organisms.
 
-Two kinds of organism start the world: **hosts**, which do their own work, and **parasites**, which
-exploit their neighbours' work instead.
+The model combines inheritance, mutation, spatial competition and horizontal transfer. This allows ancestry and realised behaviour to become progressively disconnected.
 
----
+## Research question
 
-## The question I was trying to answer
+Every organism has both an ancestry and an observed behaviour. These initially agree: descendants of hosts behave like hosts and descendants of parasites behave like parasites.
 
-Every organism has a family tree. It also has behaviour — what it actually does, moment to moment.
+Mutation, selection and horizontal transfer can disrupt that relationship.
 
-At the start, those two things agree. A descendant of a host behaves like a host.
+The experiment therefore asks:
 
-**They don't stay in agreement.** So: how fast do they come apart, and what makes it happen faster?
+> How rapidly does realised behaviour diverge from lineage expectation, and how do mutation and horizontal transfer affect that process?
 
-That's the whole project.
+## Measurements
 
----
-
-## The two measurements
-
-I record two numbers, because either one alone can mislead you.
+Two complementary measurements are used because they answer different questions.
 
 ### `Δ_D` — behavioural divergence
 
-**How far an organism has drifted from what its ancestry predicts.**
+`Δ_D` measures how strongly realised behaviour differs from lineage expectation.
 
-Near 0 means it behaves like its family tree says it should. Near 1 means ancestry tells you
-nothing about it.
+- Values near `0` indicate behaviour consistent with lineage expectation.
+- Values near `1` indicate behaviour opposite to lineage expectation.
 
-It's measured per organism, from what it actually did — not from what its code looks like it
-should do.
+The underlying divergence value is calculated from what an organism actually did, rather than merely inspecting what its genome appears capable of doing.
+
+An individual organism’s divergence is undefined when it performs no informative action. Runs with insufficient eligible coverage are excluded from the primary divergence tests rather than silently treated as having zero divergence.
+
+Population-level mean divergence can also be affected by composition: if one lineage disappears, the population average can change even when surviving individuals do not.
 
 ### `U(F|L)` — lineage informativeness
 
-**How much knowing an organism's family tree tells you about its behaviour.**
+`U(F|L)` measures how much knowing lineage reduces uncertainty about realised function.
 
-Near 1 means ancestry is a good predictor. Near 0 means ancestry is useless.
+- Values near `1` indicate that lineage is strongly informative.
+- Values near `0` indicate that lineage provides little information.
 
-### Why both
+The measurement is undefined when fewer than two lineages remain because there is no longer a between-lineage comparison to make.
 
-They break in different ways, and I wanted the breakage to be visible rather than silent:
+Across the formal factorial runs, `U(F|L)` was undefined for an average of **56.9% of sampled observations**, principally because only one lineage remained. Keeping those observations explicitly undefined prevents lineage loss from being misreported as evidence that ancestry is uninformative.
 
-- `Δ_D` can be fooled by **composition** — if one lineage dies out, the average shifts even though
-  no individual changed.
-- `U(F|L)` becomes **undefined** when a lineage disappears entirely, because there's nothing left
-  to compare.
+## Exploring the simulation
 
-`Δ_D` is also explicitly undefined in three situations: an organism that never acted, one observed
-too briefly to judge, and a lineage that has gone extinct.
+The most useful first comparison is between the **Lineage** and **Function** views.
 
-That last rule matters more than it sounds. Across the full experiment, the measurement was
-undefined for **56.9% of samples on average**. Without a rule that says so out loud, those samples
-would have quietly counted as "ancestry tells you nothing" — which would have manufactured my main
-result out of missing data.
+The Lineage view colours organisms according to ancestry. The Function view colours them according to realised behaviour. Early in a run the views tend to agree; as the system evolves, they separate.
 
----
-
-## Things to try
-
-Once the cockpit is open:
-
-**The one worth doing first.** Under the world grid there's a row of view tabs — `Genome`,
-`Lineage`, `Function`, `Energy` and others. Switch between **Lineage** and **Function**.
-
-Lineage colours every organism by the family it descends from. Function colours it by what it
-actually does. Early on the two pictures match. Before long they don't, and you are looking
-straight at the thing this project measures.
-
-| Try this | What to watch for |
+| Try this | What to observe |
 |---|---|
-| Click **Run** and leave it | The grid fills, then settles into churn |
-| Watch **Mean divergence** in the top row of numbers | It climbs fast, then flattens — usually inside the first 1,000 ticks |
-| Open **Ecological trajectories** at the bottom | Three charts: population by lineage, births and HGT, divergence and coverage |
-| Click any living cell | The inspector on the right shows that organism's genome, ancestry and realised behaviour |
-| Tick **auto-pause on first HGT success** | Stops the moment a genome fragment first moves sideways between neighbours |
-| Raise mutation, then reset and run again | Divergence arrives sooner |
-| Raise transfer instead | Divergence barely moves — but parasites die out much faster |
+| Select **Run** | The world fills and develops a changing population |
+| Switch between **Lineage** and **Function** | Ancestry and realised behaviour progressively separate |
+| Watch **Mean divergence** | In the formal runs, divergence approached its asymptote within approximately 1,000–3,000 ticks |
+| Open **Ecological trajectories** | Population, births, transfer, divergence and measurement coverage over time |
+| Select a living cell | Its genome, ancestry and realised behaviour appear in the inspector |
+| Enable **auto-pause on first HGT success** | The run pauses when a genome fragment is first transferred successfully |
+| Compare several mutation settings and seeds | Higher mutation showed descriptively earlier divergence onset in the formal runs |
+| Compare several transfer settings and seeds | Transfer had little effect on divergence magnitude; among runs where parasites became extinct, higher transfer was associated with earlier extinction |
 
-That last row surprised me, and it ended up being one of the more interesting findings.
+The Ecological trajectories panel is collapsed by default. Select its heading to open it.
 
-**The charts are collapsed by default.** *Ecological trajectories* at the bottom of the page is a
-drawer — click the heading to open it.
+Individual runs are stochastic experiments. A single demonstration may not reproduce an aggregate pattern from the formal study.
 
----
+## Running without the browser
 
-## Running it without the browser
+The headless runner uses the same simulation engine as the browser interface.
 
-The headless runner is the one I used for real experiments. Same engine, no interface.
-
-A single short run:
+Run a short demonstration:
 
 ```bash
 npm run demo --prefix Simulator -- --ticks 500 --seed 42
 ```
 
-The full experiment — 60 runs, roughly 1 hour 35 minutes on four cores:
+## Running the formal experiment
+
+The formal batch contains 60 runs and took approximately 1 hour 35 minutes using four concurrent workers on the development machine.
+
+From the repository root:
 
 ```bash
-cd Simulator && node runner/dist/cli.js batch --batch runner/presets/batch-formal-mpr-factorial-v2.json --output ../Experiments/raw-data/formal-v2 --concurrency 4
+node Simulator/runner/dist/cli.js batch \
+  --batch Simulator/runner/presets/batch-formal-mpr-factorial-v2.json \
+  --output Experiments/raw-data/formal-v2 \
+  --concurrency 4
 ```
 
-Turning a finished run into numbers and figures — about three seconds:
+The resulting bundle is written to:
+
+```text
+Experiments/raw-data/formal-v2/formal-mpr-factorial-v2
+```
+
+Run directories are write-once. The runner refuses to replace an existing bundle, so a repeated experiment must use a new output location. This protects existing evidence from accidental alteration.
+
+## Analysing a completed experiment
+
+Install the analysis dependencies:
 
 ```bash
 npm install --prefix Analysis
 ```
 
+Generate the statistical report and figures:
+
 ```bash
-npm run analyse --prefix Analysis -- --bundle <your-output-directory>
+npm run analyse --prefix Analysis -- \
+  --bundle Experiments/raw-data/formal-v2/formal-mpr-factorial-v2 \
+  --output <analysis-output-directory> \
+  --figures
 ```
 
-**Run directories are never overwritten.** The runner creates the output path if it's missing, and
-refuses to write into one that already exists, so a re-run needs a new path. That's deliberate — a
-result can't be quietly replaced by a later one.
+Omitting `--output` prints the report to standard output. Figures are only generated when `--figures` is supplied.
 
----
+## Validation
 
-## Checking it works
+Validate the simulator, runner and interface:
 
 ```bash
 npm run validate --prefix Simulator
 ```
 
-Typechecks, builds, and runs the engine, runner and interface tests.
+Run the analysis test suite:
 
 ```bash
 npm test --prefix Analysis
 ```
 
-Runs the analysis tests.
+At the current repository revision, the project contains **314 automated tests**:
 
-**314 tests in total** — 111 engine, 37 runner, 6 interface, 160 analysis.
+| Component | Tests |
+|---|---:|
+| Simulation engine | 111 |
+| Experiment runner | 37 |
+| Browser interface | 6 |
+| Analysis | 160 |
+| **Total** | **314** |
 
----
+## Repository structure
 
-## How it's organised
-
-| Folder | What's in it |
+| Directory | Purpose |
 |---|---|
-| `Simulator/engine` | The simulation itself: instruction set, world, energy, reproduction, measurement |
-| `Simulator/runner` | Runs experiments without a browser; writes results with checksums |
-| `Simulator/app` | The visual cockpit |
-| `Analysis` | Turns raw results into the statistics and figures |
+| `Simulator/engine` | Simulation world, instruction set, energy, reproduction and measurement |
+| `Simulator/runner` | Headless execution, experiment batches, manifests and checksums |
+| `Simulator/app` | React and Vite browser interface |
+| `Analysis` | Statistical analysis, supplementary exports and figures |
 
-The analysis package has **no runtime dependencies**. The engine has one, `zod`, which validates
-configuration, seed fixtures and checkpoints before they reach the simulation. The simulation
-itself — instruction set, world, energy, reproduction, measurement — is written from scratch.
+## Design choices
 
----
+### Deterministic scientific execution
 
-## Choices I made on purpose
+A configuration and seed reproduce the same scientific trajectory in the supported environment. This was tested using 24 pairs of separately executed runs, which agreed across 888 compared samples.
 
-**The engine is deterministic.** Same configuration and same seed gives the same result, every
-time, down to the last value. I tested this rather than assuming it: 24 pairs of separately
-executed runs agreed exactly across 888 compared samples.
+Generated bundles also contain provenance metadata such as timestamps, runtime duration, platform and Node.js version. These metadata naturally differ between executions, so complete output directories are not expected to be byte-for-byte identical.
 
-**The interface can't change the science.** The cockpit and the headless runner share one engine.
-Watching a run can't alter it.
+### One shared engine
 
-**Results are written once.** Every run directory is checksummed and refuses to be overwritten.
+The browser interface and headless experiment runner use the same engine. Watching a run through the interface does not invoke a separate scientific implementation.
 
-**Every run records where it came from.** Seed, step count, why it stopped, software versions, Node
-version, platform, the starting organism and its SHA-256, the final random-number state, and a hash
-of the final world.
+### Immutable results
 
-**The analysis was written before the data existed.** I built and tested the statistics against
-earlier calibration runs and committed it before the real experiment ran, so I couldn't tune the
-analysis to a result I'd already seen. Doing it that way caught three genuine bugs in how the
-analysis was being driven — each of which would otherwise have put a wrong number in my results.
+Completed run directories include checksums and cannot be overwritten by the runner. Each run records its seed, configuration, stopping reason, software provenance, starting organism checksum, final random-number state and final-world hash.
 
----
+### TypeScript
 
-## What isn't here
+TypeScript supports one shared implementation across the simulation engine, command-line runner and browser interface. Its static types help keep configuration, events, measurements and exported results consistent across those boundaries.
 
-- **Raw results.** The main experiment produced 2.7 GB. Every byte of it is regenerable with the
-  batch command above.
-- **Built output.** `dist/` is generated by `npm run build`, so it isn't committed.
-- **The dissertation itself.** This repository is the software.
-- **Experimental protocols, calibration history and methodology records.** Those belong to the
-  write-up rather than the artefact.
+Runtime inputs are validated separately using `zod`, because TypeScript’s static types cannot validate external data after compilation. Deterministic handling is also explicit where JavaScript’s numeric model could otherwise introduce ambiguity.
 
----
+### Pre-specified analysis
+
+The analysis plan and primary pipeline were frozen before formal execution. Subsequently discovered implementation defects and corrections were documented rather than concealed or retroactively treated as part of the original plan.
+
+## Scope and limitations
+
+TIERRA-SIM is an experimental digital-evolution model. It is not a biological forecast, malware system or claim that the same effects must occur in natural populations or other artificial-life platforms.
+
+The results are reproducible within the declared simulator, configuration and observation horizon. The measurements have internal and convergent support within that scope, but they have not been benchmarked against an independent digital-evolution system.
+
+## Files not included
+
+- **Formal raw results:** approximately 2.7 GB. Scientific trajectories can be regenerated from the committed configurations and seeds, although timestamps and other provenance metadata will differ.
+- **Generated build output:** `dist/` directories are created by the build process.
+- **The dissertation:** this repository contains the software artefact only.
+- **Research governance records:** protocols, calibration history and methodological records belong to the dissertation project rather than this public software repository.
 
 ## Troubleshooting
 
-**`Cannot find module .../runner/dist/cli.js`**
-The build step hasn't run yet. Run `npm run build --prefix Simulator`.
+### `Cannot find module .../runner/dist/cli.js`
 
-**`tsc: command not found` or exit code 127**
-Dependencies aren't installed. Run `npm install --prefix Simulator`, and
-`npm install --prefix Analysis` if you're using the analysis tools.
+Build the simulator:
 
-**The runner refuses to start, saying the output directory exists**
-That's intentional. Pass a new `--output` path.
+```bash
+npm run build --prefix Simulator
+```
 
-**The cockpit opens but nothing moves**
-Click **Run**. It starts paused.
+### `tsc: command not found` or exit code 127
 
-**I can't find the charts**
-They're inside the *Ecological trajectories* drawer at the bottom of the page, collapsed by
-default. Click the heading to open it.
+Install the relevant dependencies:
+
+```bash
+npm install --prefix Simulator
+npm install --prefix Analysis
+```
+
+### The runner reports that the output directory already exists
+
+This is intentional. Select a new output location so that an existing result cannot be overwritten.
+
+### The cockpit opens but nothing happens
+
+Select **Run**. New simulations start paused.
+
+### The charts are missing
+
+Open the **Ecological trajectories** panel beneath the world grid. It is collapsed by default.
 
 ---
 
 Built with Node.js and TypeScript. Tested with Vitest. Interface built with React and Vite.
 
-Callan Smith-Macdonald · COMP70046 MSc Dissertation
+**Callan Smith-Macdonald · COMP70046 MSc Dissertation**
