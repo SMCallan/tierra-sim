@@ -170,15 +170,15 @@ Run the analysis test suite:
 npm test --prefix Analysis
 ```
 
-At the current repository revision, the project contains **314 automated tests**:
+At the current repository revision, the project contains **315 automated tests**:
 
 | Component | Tests |
 |---|---:|
 | Simulation engine | 111 |
 | Experiment runner | 37 |
 | Browser interface | 6 |
-| Analysis | 160 |
-| **Total** | **314** |
+| Analysis | 161 |
+| **Total** | **315** |
 
 ## Repository structure
 

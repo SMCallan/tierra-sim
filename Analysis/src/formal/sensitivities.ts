@@ -92,7 +92,7 @@ export function thresholdSensitivity(
 
   for (const bundle of bundles) {
     for (const sample of bundle.samples) {
-      if (sample.tick < burnInTicks) {
+      if (sample.tick <= burnInTicks) {
         continue;
       }
       record(1, sample.divergence?.host.mean_divergence ?? null, sample.divergence?.host.eligible_proportion ?? null);
@@ -143,7 +143,7 @@ export function boundarySensitivity(
   const totals = new Array<number>(20).fill(0);
   for (const bundle of bundles) {
     for (const sample of bundle.samples) {
-      if (sample.tick < burnInTicks) {
+      if (sample.tick <= burnInTicks) {
         continue;
       }
       const histogram = sample.divergence?.host.divergence_histogram;
@@ -190,7 +190,7 @@ export function activeOnlyLineageInformation(
 
   for (const bundle of bundles) {
     for (const sample of bundle.samples) {
-      if (sample.tick < burnInTicks || sample.functional_classes === null || sample.functional_classes === undefined) {
+      if (sample.tick <= burnInTicks || sample.functional_classes === null || sample.functional_classes === undefined) {
         continue;
       }
       const table = [sample.functional_classes.host, sample.functional_classes.parasite];
@@ -278,7 +278,7 @@ export function attemptDiagnostic(
   };
   for (const bundle of bundles) {
     for (const interval of bundle.intervals ?? []) {
-      if (interval.tick < burnInTicks) {
+      if (interval.tick <= burnInTicks) {
         continue;
       }
       for (const lineage of ["host", "parasite"] as const) {

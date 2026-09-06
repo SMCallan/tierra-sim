@@ -319,7 +319,10 @@ export function runOutcomes(bundle: BundleInputs, parameters: OutcomeParameters)
   const { manifest, samples } = bundle;
   const { burnInTicks, lateWindowFraction, coverageFloor } = parameters;
   const requestedTicks = manifest["requested_ticks"] as number;
-  const afterBurnIn = samples.filter((sample) => sample.tick >= burnInTicks);
+  // SAP section 2.1 averages over samples *strictly after* the burn-in tick, and section 1 fixes
+  // the first included sample at 10,200. A `>=` selector admits the boundary sample at 10,000
+  // and gives each full-horizon run 451 samples where the plan specifies 450.
+  const afterBurnIn = samples.filter((sample) => sample.tick > burnInTicks);
   // The late window is taken from requested ticks, so a run that terminated early is not silently
   // given a different window than the plan declared.
   const lateFrom = requestedTicks * (1 - lateWindowFraction);

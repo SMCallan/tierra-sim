@@ -101,6 +101,18 @@ describe("run-level reduction", () => {
     expect(outcomes.mean_divergence_after_burn_in).toBe(1);
   });
 
+  it("excludes the burn-in boundary sample itself", () => {
+    // SAP section 2.1 averages strictly after the burn-in tick, and section 1 fixes the first
+    // included sample at 10,200 for a 10,000-tick burn-in sampled every 200 ticks. The boundary
+    // value is deliberately unlike its successors: a `>=` selector would average 0, 1, 1 and
+    // return two thirds rather than one.
+    const outcomes = runOutcomes(
+      { manifest, samples: [sample(400, 0), sample(600, 0), sample(800, 1), sample(1000, 1)] },
+      { ...SAP_V1_PARAMETERS, burnInTicks: 600 },
+    );
+    expect(outcomes.mean_divergence_after_burn_in).toBe(1);
+  });
+
   it("takes the late window from requested ticks, not completed ticks", () => {
     const short = { ...manifest, completed_ticks: 400 };
     const outcomes = runOutcomes(
@@ -173,7 +185,10 @@ describe("SAP-required run-level fields", () => {
     run_id: "r", condition_id: "c", replicate_id: 0, seed: 1,
     completed_ticks: 1000, requested_ticks: 1000, terminal_reason: "completed",
   };
-  const parameters = { ...SAP_V1_PARAMETERS, burnInTicks: 0 };
+  // The reducer selects samples *strictly after* the burn-in tick, per SAP section 2.1. These
+  // fixtures start at tick 0 and mean to exercise every sample, so the burn-in sits below the
+  // first tick rather than on it.
+  const parameters = { ...SAP_V1_PARAMETERS, burnInTicks: -1 };
 
   function withParasites(tick: number, parasites: number) {
     const base = sample(tick, 0.9, true);
@@ -249,7 +264,7 @@ describe("total population extinction", () => {
 
     const outcomes = runOutcomes(
       { manifest, samples: [sample(0, 0.5, true), dead] },
-      { ...SAP_V1_PARAMETERS, burnInTicks: 0 },
+      { ...SAP_V1_PARAMETERS, burnInTicks: -1 },
     );
     expect(outcomes.terminal_reason).toBe("extinction");
     expect(outcomes.host_mean_divergence_after_burn_in).toBeCloseTo(0.5, 12);
